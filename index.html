@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('pexels-shvetsa-3683056.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        h2, h3 {
+            text-align: center;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-section input[type="text"],
+        .form-section input[type="password"],
+        .form-section input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-section button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-section button:hover {
+            background-color: #218838;
+        }
+        .navbar {
+            display: none;
+            margin-top: 20px;
+        }
+        .navbar a {
+            display: inline-block;
+            padding: 10px;
+            margin-right: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+        .content-section {
+            display: none;
+            margin-top: 20px;
+        }
+        .test-options, .test-details, .appointment-options, .appointment-details {
+            display: none;
+        }
+        .success-message {
+            display: none;
+            color: green;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Healthcare System</h2>
+
+        <!-- Login Form -->
+        <div id="loginForm" class="form-section">
+            <h3>Login</h3>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button onclick="login()">Login</button>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div id="navbar" class="navbar">
+            <a href="#" onclick="showSection('bookTest')">Book Test</a>
+            <a href="#" onclick="showSection('doctorAppointment')">Doctor Appointment</a>
+            <a href="#" onclick="downloadReport()">Download Report</a>
+            <a href="#" onclick="showSection('uploadPrescription')">Upload Prescription</a>
+            <a href="#" onclick="logout()">Log Out</a>
+        </div>
+
+        <!-- Content Sections -->
+        <div id="bookTest" class="content-section">
+            <h3>Book Test</h3>
+            <div class="test-options">
+                <button onclick="showTestDetails('abo')">ABO Incompatibility</button>
+                <button onclick="showTestDetails('acidBase')">Acid Base Imbalance</button>
+                <button onclick="showTestDetails('acutePhase')">Acute Phase Reactant</button>
+            </div>
+            <div id="abo" class="test-details">
+                <p>ANTI A TITRE, IGM - 1000.00 CZK</p>
+                <input type="date" id="aboDate1">
+                <button onclick="bookTest('aboDate1')">Book Test</button>
+                <p>ANTI B TITRE, IGM - 1200.00 CZK</p>
+                <input type="date" id="aboDate2">
+                <button onclick="bookTest('aboDate2')">Book Test</button>
+                <p>ANTI C TITRE, IGM - 1400.00 CZK</p>
+                <input type="date" id="aboDate3">
+                <button onclick="bookTest('aboDate3')">Book Test</button>
+            </div>
+            <div id="acidBase" class="test-details">
+                <p>BLOOD GAS ANALYSIS, ARTERIAL - 500.00 CZK</p>
+                <input type="date" id="acidBaseDate1">
+                <button onclick="bookTest('acidBaseDate1')">Book Test</button>
+                <p>BLOOD GAS ANALYSIS, VENOUS - 600.00 CZK</p>
+                <input type="date" id="acidBaseDate2">
+                <button onclick="bookTest('acidBaseDate2')">Book Test</button>
+            </div>
+            <div id="acutePhase" class="test-details">
+                <p>HAPTOGLOBIN - 1300.00 CZK</p>
+                <input type="date" id="acutePhaseDate1">
+                <button onclick="bookTest('acutePhaseDate1')">Book Test</button>
+                <p>C-REACTIVE PROTEIN; CRP - 2000.00 CZK</p>
+                <input type="date" id="acutePhaseDate2">
+                <button onclick="bookTest('acutePhaseDate2')">Book Test</button>
+            </div>
+        </div>
+
+        <div id="doctorAppointment" class="content-section">
+            <h3>Doctor Appointment</h3>
+            <div class="appointment-options">
+                <button onclick="showAppointmentDetails('doctor1')">DR. mudr. otkar ach</button>
+                <button onclick="showAppointmentDetails('doctor2')">Dr. Josef</button>
+                <button onclick="showAppointmentDetails('doctor3')">Dr. barbara memvoa</button>
+                <button onclick="showAppointmentDetails('doctor4')">Dr. anna nemcova</button>
+                <button onclick="showAppointmentDetails('doctor5')">Dr. ondrej silma</button>
+            </div>
+            <div id="doctor1" class="appointment-details">
+                <p>DR. mudr. otkar ach</p>
+                <input type="date" id="doctorDate1">
+                <button onclick="bookAppointment('doctorDate1', 'DR. mudr. otkar ach')">Book Appointment</button>
+            </div>
+            <div id="doctor2" class="appointment-details">
+                <p>Dr. Josef</p>
+                <input type="date" id="doctorDate2">
+                <button onclick="bookAppointment('doctorDate2', 'Dr. Josef')">Book Appointment</button>
+            </div>
+            <div id="doctor3" class="appointment-details">
+                <p>Dr. barbara memvoa</p>
+                <input type="date" id="doctorDate3">
+                <button onclick="bookAppointment('doctorDate3', 'Dr. barbara memvoa')">Book Appointment</button>
+            </div>
+            <div id="doctor4" class="appointment-details">
+                <p>Dr. anna nemcova</p>
+                <input type="date" id="doctorDate4">
+                <button onclick="bookAppointment('doctorDate4', 'Dr. anna nemcova')">Book Appointment</button>
+            </div>
+            <div id="doctor5" class="appointment-details">
+                <p>Dr. ondrej silma</p>
+                <input type="date" id="doctorDate5">
+                <button onclick="bookAppointment('doctorDate5', 'Dr. ondrej silma')">Book Appointment</button>
+            </div>
+        </div>
+
+        <div id="uploadPrescription" class="content-section">
+            <h3>Upload Prescription</h3>
+            <input type="file" id="prescription">
+            <button onclick="uploadPrescription()">Upload</button>
+        </div>
+
+        <div id="successMessage" class="success-message">
+            <p>Operation completed successfully!</p>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'admin' && password === '12345') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('navbar').style.display = 'block';
+                alert('Login successful!');
+            } else {
+                alert('Invalid username or password!');
+            }
+        }
+
+        function showSection(section) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.style.display = 'none');
+            document.getElementById(section).style.display = 'block';
+
+            if (section === 'bookTest') {
+                document.querySelector('.test-options').style.display = 'block';
+                const testDetails = document.querySelectorAll('.test-details');
+                testDetails.forEach(detail => detail.style.display = 'none');
+            } else if (section === 'doctorAppointment') {
+                document.querySelector('.appointment-options').style.display = 'block';
+                const appointmentDetails = document.querySelectorAll('.appointment-details');
+                appointmentDetails.forEach(detail => detail.style.display = 'none');
+            }
+        }
+
+        function showTestDetails(test) {
+            const testDetails = document.querySelectorAll('.test-details');
+            testDetails.forEach(detail => detail.style.display = 'none');
+            document.getElementById(test).style.display = 'block';
+        }
+
+        function showAppointmentDetails(doctor) {
+            const appointmentDetails = document.querySelectorAll('.appointment-details');
+            appointmentDetails.forEach(detail => detail.style.display = 'none');
+            document.getElementById(doctor).style.display = 'block';
+        }
+
+        function bookTest(dateId) {
+            const date = document.getElementById(dateId).value;
+            if (date) {
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 3000);
+                alert(`Booked test for ${date}`);
+            } else {
+                alert('Please select a date.');
+            }
+        }
+
+        function bookAppointment(dateId, doctorName) {
+            const date = document.getElementById(dateId).value;
+            if (date) {
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none');
+                }, 3000);
+                alert(`Appointment booked with ${doctorName} on ${date}`);
+            } else {
+                alert('Please select a date.');
+            }
+        }
+
+        function downloadReport() {
+            alert('Downloaded report successfully!');
+        }
+
+        function uploadPrescription() {
+            const fileInput = document.getElementById('prescription');
+            if (fileInput.files.length === 0) {
+                alert('Please select a file to upload.');
+            } else {
+                // File upload logic here (e.g., sending file to the server)
+                alert('Prescription uploaded successfully!');
+            }
+        }
+
+        function logout() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('navbar').style.display = 'none';
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.style.display = 'none');
+            alert('Logged out successfully!');
+        }
+    </script>
+</body>
+</html>
